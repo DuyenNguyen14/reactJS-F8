@@ -34,6 +34,16 @@
             <h4>2. Gặp lỗi khi render từ mảng (prop "key)?</h4>
             <h4 class='d-inline'>3. Không render được 2 elements cùng lúc?</h4> Phải có một tag wrap (thẻ div hoặc React.Fragment, ưu điểm của React.Fragment là không tạo ra một thẻ div không mong muốn trên giao diện.)
         </p>
+        <hr/>
+        <p>
+            <h2>1. React element types: string, function/ class</h2>
+            - Wrapper:
+                <ul>
+                    <li>Header - Header component</li>
+                    <li>Content - Content component</li>
+                    <li>Footer - Footer component</li>
+                </ul>
+        </p>
     </div>
     <div id="root"></div>
     <!-- Bootstrap JavaScript Libraries -->
@@ -84,14 +94,50 @@
         //         }
         //     </ul>
 
-        const jsx = React.createElement(
-            React.Fragment,
-            null,
-            React.createElement('h1', null, 'Heading 1'),
-            React.createElement('h2', null, 'Heading 2')
+        // const jsx = React.createElement(
+        //     React.Fragment,
+        //     null,
+        //     React.createElement('h1', null, 'Heading 1'),
+        //     React.createElement('h2', null, 'Heading 2')
+        // )
+
+        // function Header() {
+        //     return (
+        //         <div className="header">Header</div>
+        //     )
+        // }
+
+        // const app = (
+        //     <div class="container">
+        //         <Header></Header>
+        //         <div class="content">Content</div>
+        //         <div class="footer">Footer</div>
+        //     </div>
+        // )
+
+        // PostItem
+        function PostItem() {
+            return (
+                <div class="post-item">
+                    <img src="https://picsum.photos/600/300" alt="... " />
+                    <h2 className="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+                    <p className="post-desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure omnis, odit soluta, similique officiis rem dolores maiores ullam, aperiam voluptatum possimus nostrum unde eos? Nesciunt nostrum laboriosam deleniti error doloremque.</p>
+                    <p className="post-published text-secondary">1 day ago</p>
+                </div>
+            )
+        }
+
+        const post_list = (
+            <div class="posts-list container">
+                <PostItem />
+                <PostItem />
+                <PostItem />
+            </div>
         )
 
-        ReactDOM.render(jsx, document.getElementById('root'));
+        // ReactDOM.render(jsx, document.getElementById('root'));
+        // ReactDOM.render(app, document.getElementById('root'));
+        ReactDOM.render(post_list, document.getElementById('root'));
     </script>
   </body>
 </html>
