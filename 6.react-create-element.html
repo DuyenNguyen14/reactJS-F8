@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container py-5">
+      <h1>React Create Element</h1>
+      <p>
+        React.createElement() sẽ trả ra một đối tượng được gọi là React element
+      </p>
+      <h3>So sánh DOM element và React element</h3>
+      <p>
+        React element là một object, gồm có 3 đối số chính: type, props,
+        children,...
+      </p>
+      <hr />
+      <h1>React-DOM</h1>
+      <p>
+        <h3 class="d-inline">1. React-DOM là gì?</h3>
+        Là một thư viện, là cầu nối giữa React và DOM. Dùng thư viện này để tạo
+        ra React element sau đó có thể render vào DOM
+      </p>
+      <p>
+        <h3 class="d-inline">2. Tại sao lại tách React-DOM ra?</h3>
+      </p>
+    </div>
+
+    <div id="root"></div>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+      integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+      integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- React cdn -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"
+    ></script>
+    <!-- react-dom -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js"
+    ></script>
+
+    <script>
+        // Get root element
+    const root =document.getElementById('root');
+      
+    // {// DOM
+    //   // Ví dụ 1:
+    //   const h1DOM = document.createElement("h1");
+    //   h1DOM.innerText = "Hello guys!";
+    //   h1DOM.className = "heading";
+    //   h1DOM.title = "Hello";
+    //   document.body.appendChild(h1DOM);
+    //   // Ví dụ 2:
+    //   const ulDOM = document.createElement("ul");
+    //   ulDOM.id = "ulId";
+    //   ulDOM.style = "color: red; font-size: 30px";
+
+    //   const liDOM1 = document.createElement("li");
+    //   liDOM1.innerText = "Javascript";
+    //   liDOM1.id = "li-1";
+
+    //   const liDOM2 = document.createElement("li");
+    //   liDOM2.innerText = "ReactJS";
+
+    //   ulDOM.appendChild(liDOM1);
+    //   ulDOM.appendChild(liDOM2);
+
+    //   document.body.appendChild(ulDOM);}
+
+      // React
+      // Ví dụ 1:
+      const h1React = React.createElement(
+        "h1",
+        // properties of h1
+        {
+          title: "Hello",
+          className: "heading",
+        },
+        // children
+        "Hello guys!"
+      );
+      ReactDOM.render(h1React,root);
+      // Ví dụ 2:
+      const ulReact = React.createElement(
+        "ul",
+        {
+          id: "ulId",
+          style: "color: red; font-size: 30px",
+        },
+        React.createElement(
+          "li",
+          {
+            id: "li-1",
+          },
+          "Javascript"
+        ),
+        React.createElement("li", null, "ReactJS")
+      );
+      console.log(ulReact);
+
+      // console.dir(h1DOM);
+      // console.log(h1React);
+
+      // Bài tập:
+      // DOM
+      const divDOM = document.createElement("div");
+      divDOM.className = "post-item";
+
+      const h2DOM = document.createElement("h2");
+      h2DOM.title = "Học React tại F8";
+      h2DOM.innerText = "Học ReactJS";
+
+      const pDOM = document.createElement("p");
+      pDOM.innerText = "Học ReactJS từ cơ bản tới nâng cao";
+
+      divDOM.appendChild(h2DOM);
+      divDOM.appendChild(pDOM);
+      document.body.appendChild(divDOM);
+
+      // React
+      const divReact = React.createElement(
+        "div",
+        {
+          className: "post-item",
+        },
+        React.createElement(
+          "h2",
+          {
+            title: "Học React tại F8",
+          },
+          "Học ReactJS"
+        ),
+        React.createElement("p", null, "Học ReactJS từ cơ bản tới nâng cao")
+      );
+      console.log(divReact);
+
+    // React-DOM --> render UI
+    ReactDOM.render(divReact, root);
+    </script>
+  </body>
+</html>
