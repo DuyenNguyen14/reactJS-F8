@@ -32,7 +32,7 @@
             <h2>Câu hỏi thường gặp:</h2>
             <h4>1. Tại sao khi code thuần dùng map phải join()...?</h4>
             <h4>2. Gặp lỗi khi render từ mảng (prop "key)?</h4>
-            <h4>3. Không render được 2 elements cùng lúc?</h4>
+            <h4 class='d-inline'>3. Không render được 2 elements cùng lúc?</h4> Phải có một tag wrap (thẻ div hoặc React.Fragment, ưu điểm của React.Fragment là không tạo ra một thẻ div không mong muốn trên giao diện.)
         </p>
     </div>
     <div id="root"></div>
@@ -75,16 +75,23 @@
             }
         ];
 
-        const ul = <ul>
-                <li>JavaScript</li>
-                <li>ReactJS</li>
-                {courses.map((item,index) => {
-                    return <li key={index}>{item.name}</li>;
-                })
-                }
-            </ul>
+        // const jsx = <ul>
+        //         <li>JavaScript</li>
+        //         <li>ReactJS</li>
+        //         {courses.map((item,index) => {
+        //             return <li key={index}>{item.name}</li>;
+        //         })
+        //         }
+        //     </ul>
 
-        ReactDOM.render(ul, document.getElementById('root'));
+        const jsx = React.createElement(
+            React.Fragment,
+            null,
+            React.createElement('h1', null, 'Heading 1'),
+            React.createElement('h2', null, 'Heading 2')
+        )
+
+        ReactDOM.render(jsx, document.getElementById('root'));
     </script>
   </body>
 </html>
