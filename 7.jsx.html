@@ -18,6 +18,10 @@
     />
     <!-- Babel library -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+
+    </style>
   </head>
 
   <body>
@@ -69,6 +73,16 @@
             <li>Props "key" là prop đặc biệt</li>
             <li>Props cơ bản là đối số của Component => props có thể là bất cứ dạng dữ liệu nào</li>
             <li>Sử dụng destructuring</li>
+        </ul>
+
+        <hr />
+        <h2>Làm việc với JSX</h2>
+        <h4>Phần I.</h4>
+        <ul>
+            <li>Xử lý DOM events</li>
+            <li>Components do chúng ta định nghĩa phải viết in hoa ký tự đầu</li>
+            <li>Chọn component trong 1 object</li>
+            <li>Booleans, undefined, null không được render</li>
         </ul>
 
     </div>
@@ -383,15 +397,15 @@
         "is_published": true
       }
     ]
-        // CourseItem.jsx
-        function CourseItem(props) {
-            console.log(props.coursesInfo);
-            
-            return (props.coursesInfo.map((course, index) => {
+        // CourseItem.jsx --> UI component
+        function CourseItem({ coursesInfo, clickEvent }) {
+            return (coursesInfo.map((course, index) => {
                 const { title, image_url, description, students_count } = course;
                 return (
                     <div key="index" className='my-3'>
-                        <h2>{title}</h2>
+                        <h2 onClick={() => {
+                            clickEvent(title);
+                        }}>{title}</h2>
                         <img className="w-100" src={image_url} alt="" />
                         <p>{description}</p>
                         <p className='text-secondary'>Students: {students_count}</p>
@@ -400,11 +414,46 @@
             }))
         }
 
-        // App.jsx
+        const Form = {
+            Input() {
+                return <input />
+            },
+            Checkbox() {
+                return <input type="checkbox" />
+            }
+        }
+
+        function Button({ title, isPrimary }) {
+            const Component = 'button';
+
+            console.log(isPrimary);
+            return (
+                <Component>{title}</Component>
+            )
+        }
+
+        // App.jsx --> Container component
         function App() {
+            const handleClick = (content) => {
+                console.log(content);
+            }
+            
+            let firstAccess = true;
+
+            const title = 'Click me!'
+            
             return (
                 <div class="container">
-                    <CourseItem coursesInfo={courses} />    
+                    <CourseItem coursesInfo={courses} />
+                    <Button
+                        /* title="Click me!" */
+                        title={title}
+                        // isPrimary={true}
+                        isPrimary
+                    />
+
+                    { firstAccess && <h1>Welcome to F8</h1> }
+
                 </div>
             )
         }
